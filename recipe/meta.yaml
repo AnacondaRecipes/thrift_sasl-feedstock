@@ -24,9 +24,10 @@ requirements:
 
   run:
     - python
-    - thrift >=0.10
-    - pure-sasl  # [win]
-    - sasl  # [not win]
+    - thrift >=0.10  # [py3k]
+    - thrift  # [py2k]
+    - pure-sasl >=0.3.0  # [win]
+    - sasl >=0.2.1  # [not win]
 
 test:
   imports:
