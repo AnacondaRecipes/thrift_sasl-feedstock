@@ -13,8 +13,9 @@ source:
   {{ hashtype }}: {{ hash }}
 
 build:
-  number: 1
+  number: 2
   script: python setup.py install --single-version-externally-managed --record=record.txt
+  skip: True  # [linux and s390x]
 
 requirements:
   host:
@@ -23,7 +24,7 @@ requirements:
 
   run:
     - python
-    - thrift >=0.10  # [py3k]
+    - thrift >=0.10  # [not py2k]
     - thrift  # [py2k]
     - pure-sasl >=0.3.0  # [win]
     - sasl >=0.2.1  # [not win]
