@@ -13,8 +13,8 @@ source:
   {{ hashtype }}: {{ hash }}
 
 build:
-  number: 2
-  script: python setup.py install --single-version-externally-managed --record=record.txt
+  number: 3
+  script: pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
   skip: True  # [linux and s390x]
 
 requirements:
