@@ -1,47 +1,47 @@
 {% set name = "thrift_sasl" %}
-{% set version = "0.4.2" %}
-{% set hashtype = "sha256" %}
-{% set hash = "6a1c54731cb3ce61bdc041d9dc36e21f0f56db0163bb7b57be84de3fda70922f" %}
+{% set version = "0.4.3" %}
 
 package:
-  name: {{ name }}
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  {{ hashtype }}: {{ hash }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/thrift_sasl-{{ version }}.tar.gz
+  sha256: 5bdd5b760d90a13d9b3abfce873db0425861aa8d6bf25912d3cc0467a4f773da
 
 build:
-  number: 3
-  script: pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  number: 0
   skip: True  # [linux and s390x]
 
 requirements:
   host:
     - python
-    - setuptools
-
+    - setuptool
+    - pip
+    - wheel
   run:
     - python
-    - thrift >=0.10  # [not py2k]
-    - thrift  # [py2k]
-    - pure-sasl >=0.3.0  # [win]
-    - sasl >=0.2.1  # [not win]
+    - thrift >=0.10.0  # [py>=30]
+    - pure-sasl >=0.6.2
+    - six >=1.13.0
 
 test:
   imports:
     - thrift_sasl
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   home: https://github.com/cloudera/thrift_sasl
-  license: Apache 2.0
   summary: Thrift SASL module that implements TSaslClientTransport
+  license: Apache-2.0
   license_family: Apache
+  license_file: LICENSE
   dev_url: https://github.com/cloudera/thrift_sasl
   doc_url: https://github.com/cloudera/thrift_sasl
-  # https://github.com/cloudera/thrift_sasl/pull/7
-  # license_file: LICENSE
 
 extra:
   recipe-maintainers:
