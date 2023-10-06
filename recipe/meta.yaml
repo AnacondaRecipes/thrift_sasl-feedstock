@@ -39,7 +39,8 @@ about:
   summary: Thrift SASL module that implements TSaslClientTransport
   license: Apache-2.0
   license_family: Apache
-  license_file: LICENSE
+  # LICENSE file is missing from sdist, but present in repo
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
   dev_url: https://github.com/cloudera/thrift_sasl
   doc_url: https://github.com/cloudera/thrift_sasl
 
